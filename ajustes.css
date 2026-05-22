@@ -1,0 +1,72 @@
+/* Variables por defecto (Modo Claro Inclusivo) */
+:root {
+  --bg-color: #f7f7f5;
+  --text-color: #2d3136;
+  --card-bg: #ffffff;
+  --font-main: "Segoe UI", sans-serif;
+  --base-size: 18px;
+}
+
+/* Modos de Color */
+body.dark {
+  --bg-color: #1a1b1e;
+  --text-color: #e8eaed;
+  --card-bg: #2c2e33;
+}
+
+body.cream {
+  --bg-color: #f4ebd0;
+  --text-color: #3e362e;
+  --card-bg: #fff9f0;
+}
+
+/* Fuente para Dislexia (opcional, puedes usar 'OpenDyslexic') */
+body.font-dyslexic {
+  --font-main: "Comic Sans MS", sans-serif; /* O una fuente específica */
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-main);
+  font-size: var(--base-size);
+  transition: all 0.3s ease;
+}
+
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 40px 5%;
+}
+
+.settings-card {
+  background: var(--card-bg);
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.button-group {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.btn-setting,
+.btn-theme {
+  padding: 15px 25px;
+  border: 2px solid var(--text-color);
+  border-radius: 10px;
+  cursor: pointer;
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-weight: bold;
+  min-width: 150px; /* Target size para discapacidad motriz */
+}
+
+.btn-setting:focus,
+input[type="range"]:focus {
+  outline: 4px solid #ff9800; /* Foco naranja de alto contraste */
+}

@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>secion</title>
+    <link rel="stylesheet" href="navegador.css" />
+    <link rel="stylesheet" href="ajustes.css" />
+    <style>
+      /* Estilos específicos para la tarjeta de acceso */
+      .auth-container {
+        max-width: 400px;
+        margin: 60px auto;
+        padding: 2rem;
+        background-color: var(--card-bg, #ffffff);
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        transition: background-color 0.3s;
+      }
+      .auth-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .form-group label {
+        font-weight: bold;
+        color: var(--text-color);
+      }
+      .form-group input {
+        padding: 0.8rem 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        outline: none;
+      }
+      body.dark .form-group input {
+        background-color: #252525;
+        border-color: #444;
+        color: white;
+      }
+      .btn-auth {
+        background-color: #38a193;
+        color: white;
+        border: none;
+        padding: 0.9rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition:
+          background-color 0.2s,
+          transform 0.1s;
+      }
+      .btn-auth:hover {
+        background-color: #2d8276;
+      }
+      .btn-auth:active {
+        transform: scale(0.98);
+      }
+      .auth-toggle-text {
+        text-align: center;
+        margin-top: 1rem;
+        color: var(--text-color);
+        font-size: 0.95rem;
+      }
+      .auth-toggle-text span {
+        color: #38a193;
+        cursor: pointer;
+        text-decoration: underline;
+        font-weight: bold;
+      }
+      .mensaje-alerta {
+        padding: 0.8rem;
+        border-radius: 6px;
+        font-size: 0.95rem;
+        text-align: center;
+        display: none;
+      }
+      .error-alerta {
+        background-color: #ffebee;
+        color: #c62828;
+      }
+      body.dark .error-alerta {
+        background-color: #5c1d1d;
+        color: #ffcdd2;
+      }
+      .exito-alerta {
+        background-color: #e8f5e9;
+        color: #2e7d32;
+      }
+      body.dark .exito-alerta {
+        background-color: #1b431e;
+        color: #a5d6a7;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="nav-container">
+          <img src="icono.png" alt="Educación" class="logo" />
+          <span
+            style="
+              font-weight: bold;
+              color: var(--text-color);
+              font-size: 1.2rem;
+              margin-left: 10px;
+            "
+            >Plataforma Educativa</span
+          >
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <div class="auth-container">
+        <div id="authMessage" class="mensaje-alerta"></div>
+
+        <div id="loginSection">
+          <h2
+            style="
+              margin-bottom: 1.5rem;
+              text-align: center;
+              color: var(--text-color);
+            "
+          >
+            Iniciar Sesión
+          </h2>
+          <form
+            id="loginForm"
+            class="auth-form"
+            onsubmit="procesarLogin(event)"
+          >
+            <div class="form-group">
+              <label for="loginUser">Usuario o Correo:</label>
+              <input
+                type="text"
+                id="loginUser"
+                required
+                autocomplete="username"
+              />
+            </div>
+            <div class="form-group">
+              <label for="loginPassword">Contraseña:</label>
+              <input
+                type="password"
+                id="loginPassword"
+                required
+                autocomplete="current-password"
+              />
+            </div>
+            <button type="submit" class="btn-auth">Ingresar</button>
+          </form>
+          <p class="auth-toggle-text">
+            ¿No tienes cuenta?
+            <span onclick="cambiarFormulario(true)">Regístrate aquí</span>
+          </p>
+        </div>
+
+        <div id="registerSection" style="display: none">
+          <h2
+            style="
+              margin-bottom: 1.5rem;
+              text-align: center;
+              color: var(--text-color);
+            "
+          >
+            Crear Cuenta
+          </h2>
+          <form
+            id="registerForm"
+            class="auth-form"
+            onsubmit="procesarRegistro(event)"
+          >
+            <div class="form-group">
+              <label for="regUser">Elige un Usuario:</label>
+              <input type="text" id="regUser" required />
+            </div>
+            <div class="form-group">
+              <label for="regPassword">Contraseña:</label>
+              <input type="password" id="regPassword" required />
+            </div>
+            <button type="submit" class="btn-auth">Registrarme</button>
+          </form>
+          <p class="auth-toggle-text">
+            ¿Ya tienes cuenta?
+            <span onclick="cambiarFormulario(false)">Inicia sesión</span>
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

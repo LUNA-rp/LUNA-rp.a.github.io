@@ -1,0 +1,542 @@
+/* ==========================================================================
+   1. ACCESIBILIDAD, REINICIO (RESET) Y AJUSTES GLOBALES
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Indicador de foco de alta visibilidad para navegación por teclado */
+:focus,
+:focus-visible {
+  outline: 4px solid #1a74e4 !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 10px rgba(26, 116, 228, 0.5);
+}
+
+/* ==========================================================================
+   2. CONFIGURACIÓN DE COLORES Y VARIABLES (MODO CLARO Y OSCURO)
+   ========================================================================== */
+
+/* --- Colores base por defecto (Modo Claro) --- */
+:root {
+  --bg-color: #f7f7f5;
+  --text-color: #2d3136;
+  --nav-bg: #8cc4eb; /* Azul original del nav */
+  --link-color: #0000ff; /* Azul para los enlaces */
+  --card-bg: #ffffff;
+  --dropdown-bg: #ffffff;
+  --dropdown-link: #2d3136;
+}
+
+/* --- Forzar sobreescritura cuando se activa .dark (Modo Oscuro) --- */
+body.dark {
+  background-color: #121212 !important; /* Blindaje para navegadores estrictos */
+  color: #ffffff !important;
+
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --nav-bg: #4b4848; /* Nav gris oscuro */
+  --link-color: #8cc4eb; /* Azul claro para contraste en negro */
+  --card-bg: #1e1e1e; /* Tarjetas gris oscuro */
+  --dropdown-bg: #2d2d2d;
+  --dropdown-link: #ffffff;
+}
+
+/* --- Aplicación Base del Cuerpo --- */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-size: 18px;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* ==========================================================================
+   3. BARRA DE NAVEGACIÓN GENERAL (NAVBAR)
+   ========================================================================== */
+nav {
+  background-color: var(--nav-bg);
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 10px rgba(54, 54, 54, 0.575);
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  height: 55px;
+  width: auto;
+}
+
+.links-nav {
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+}
+
+.links-nav li {
+  display: flex;
+}
+
+.links-nav a {
+  color: var(--link-color);
+  text-decoration: none;
+  font-weight: 700;
+  padding: 1rem 1.5rem; /* Área táctil recomendada WCAG */
+  border-radius: 12px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease,
+    color 0.2s ease;
+}
+
+.links-nav a:hover,
+.links-nav a:focus {
+  opacity: 0.8;
+  transform: translateY(-2px);
+  color: white;
+}
+
+.menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--link-color);
+  font-size: 1.7rem;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   4. MENÚ DESPLEGABLE (DROPDOWN CURSOS)
+   ========================================================================== */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-btn {
+  background: none;
+  border: none;
+  color: var(--link-color);
+  font-weight: 700;
+  cursor: pointer;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.dropdown-btn:hover,
+.dropdown-btn:focus {
+  background: #67b4cc;
+  color: white;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--dropdown-bg);
+  border-radius: 16px;
+  min-width: 220px;
+  padding: 0.5rem;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  display: none;
+  flex-direction: column;
+  z-index: 999;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 1rem;
+  border-radius: 12px;
+  color: var(--dropdown-link);
+  text-decoration: none;
+  transition:
+    background-color 0.3s,
+    transform 0.3s,
+    color 0.3s;
+}
+
+.dropdown-menu a:hover,
+.dropdown-menu a:focus {
+  background: #38a193;
+  color: white;
+  transform: translateX(5px);
+}
+
+/* Mostrar menú cuando esté activo mediante JS */
+.dropdown.active .dropdown-menu {
+  display: flex;
+}
+
+/* ==========================================================================
+   5. BARRA DE BÚSQUEDA (SEARCH BAR)
+   ========================================================================== */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--link-color);
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+.search-btn:hover,
+.search-btn:focus {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+#searchInput {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  font-size: 1rem;
+  width: 220px;
+}
+
+.material-symbols-outlined {
+  font-size: 28px;
+}
+
+/* ==========================================================================
+   6. SECCIÓN DE TARJETAS DE CURSOS (PÁGINA PRINCIPAL)
+   ========================================================================== */
+.courses-section {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 1rem;
+}
+
+.title-main {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: var(--text-color);
+  transition: color 0.3s;
+}
+
+.courses-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  row-gap: 5rem;
+}
+
+.course-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text-color);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s,
+    color 0.3s;
+  min-height: 300px;
+  outline: none;
+}
+
+body.dark .course-card {
+  border: 1px solid #333333; /* Borde sutil para separar tarjetas del fondo negro */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.course-card:hover,
+.course-card:focus {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+.course-top {
+  padding: 2rem;
+  height: 140px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.course-content {
+  padding: 1.5rem;
+  line-height: 1.6;
+}
+
+.course-content h2 {
+  color: var(--text-color);
+}
+
+/* ==========================================================================
+   7. IMÁGENES DE FONDO DE CADA ASIGNATURA
+   ========================================================================== */
+.matematica-bg {
+  background-image: url("https://plus.unsplash.com/premium_vector-1722586231105-a190495ce48a?w=500&auto=format&fit=crop&q=60");
+}
+
+.literatura-bg {
+  background-image: url("https://plus.unsplash.com/premium_vector-1715961962846-b3d272232abf?w=500&auto=format&fit=crop&q=60");
+}
+
+.ciencia-bg {
+  background-image: url("https://plus.unsplash.com/premium_vector-1723184441518-87733f924445?q=80&w=831");
+}
+
+.quimica-bg {
+  background-image: url("https://img.magnific.com/vector-gratis/dibujado-mano-colorido-fondo-educacion-cientifica_23-2148489231.jpg?semt=ais_hybrid&w=740");
+}
+
+.ingles-bg {
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4dNwrSLp8AdcwzGSOvDTxhpI2PVy3cbU9lQ&");
+}
+
+.historia-bg {
+  background-image: url("https://previews.123rf.com/images/julipaper/julipaper2007/julipaper200700384/151029465-seamless-pattern-of-the-school-subject-of-history-sand-background-with-pyramids-scrolls-hourglass.jpg");
+}
+
+/* ==========================================================================
+   8. RESPONSIVE DESIGN (MENÚ MÓVIL Y ADAPTACIÓN)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .menu-btn {
+    display: block;
+  }
+
+  .links-nav {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background-color: var(--nav-bg);
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    clip-path: circle(0px at 90% -10%);
+    pointer-events: none;
+    transition:
+      clip-path 0.4s ease,
+      background-color 0.3s;
+    z-index: 1000;
+  }
+
+  .links-nav.active {
+    clip-path: circle(1000px at 90% -10%);
+    pointer-events: all;
+  }
+
+  .links-nav a {
+    width: 80%;
+    font-size: 1.1rem;
+    padding: 1rem;
+  }
+
+  .links-nav li {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+  }
+
+  .links-nav.active li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .courses-section {
+    padding: 1rem;
+  }
+
+  .title-main {
+    text-align: center;
+  }
+
+  /* --- Ajustes Dropdown Móvil --- */
+  .dropdown {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .dropdown-btn {
+    width: 80%;
+    text-align: center;
+  }
+
+  .dropdown-menu {
+    position: relative;
+    display: none;
+    flex-direction: column;
+    width: 80%;
+    margin-top: 0.5rem;
+    background: var(--dropdown-bg);
+    box-shadow: none;
+    padding: 0.5rem;
+  }
+
+  body.dark .dropdown-menu {
+    background: #252525;
+  }
+
+  .dropdown.active .dropdown-menu {
+    display: flex;
+  }
+}
+/*ASISTENTE VIRTUAL*/
+/* ==========================================================================
+   9. ASISTENTE VIRTUAL (CHATBOT) Y MODO OSCURO ENLAZADO
+   ========================================================================== */
+.chatbot-container {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 1000;
+  font-family: inherit;
+}
+
+/* Botón flotante */
+.chatbot-toggle {
+  background-color: #38a193; /* Tu verde de acento */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.chatbot-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Ventana de Chat */
+.chatbot-window {
+  position: absolute;
+  bottom: 75px;
+  right: 0;
+  width: 320px;
+  height: 400px;
+  background-color: var(--card-bg);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  display: none; /* Se activa mediante JS */
+  flex-direction: column;
+  overflow: hidden;
+  transition: background-color 0.3s;
+}
+
+body.dark .chatbot-window {
+  border-color: #333333;
+}
+
+/* Encabezado del chat */
+.chatbot-header {
+  background-color: var(--nav-bg);
+  color: var(--text-color);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+.chatbot-header button {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Cuerpo del chat (Mensajes) */
+.chatbot-body {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.02);
+}
+body.dark .chatbot-body {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.bot-message {
+  background-color: #e3f2fd;
+  color: #2d3136;
+  padding: 0.8rem;
+  border-radius: 12px 12px 12px 0;
+  max-width: 85%;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+body.dark .bot-message {
+  background-color: #2d2d2d;
+  color: #ffffff;
+}
+
+/* Footer (Input y botón enviar) */
+.chatbot-footer {
+  padding: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: var(--card-bg);
+}
+
+#chatInput {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  outline: none;
+  font-size: 0.95rem;
+}
+body.dark #chatInput {
+  background-color: #252525;
+  border-color: #444;
+  color: white;
+}
+
+#sendChatBtn {
+  background: none;
+  border: none;
+  color: #38a193;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}

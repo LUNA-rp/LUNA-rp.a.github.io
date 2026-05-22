@@ -1,0 +1,121 @@
+:root {
+  --primary-blue: #4a90e2;
+  --success-green: #60b21a;
+  --bg-gradient: linear-gradient(180deg, #b3e5fc 0%, #ffffff 100%);
+}
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: var(--bg-gradient);
+  min-height: 100vh;
+}
+
+.exercise-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  width: 90%;
+  max-width: 800px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.instruction-box,
+.question-box {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  text-align: left;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.audio-btn {
+  background: #00bcd4;
+  border: none;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: 0.2s;
+}
+
+.audio-btn:hover {
+  transform: scale(1.1);
+}
+
+/* Grid de barcos */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  margin: 2rem 0;
+}
+
+.item-img {
+  width: 80px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.item-img.clicked {
+  opacity: 0.5;
+  transform: scale(0.9);
+}
+
+/* Selector numérico */
+.number-selector {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.num-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: var(--primary-blue);
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.num-btn.selected {
+  background: #003c8f;
+  box-shadow: 0 0 0 4px #b3e5fc;
+}
+
+.btn-enviar {
+  background: var(--success-green);
+  color: white;
+  border: none;
+  padding: 12px 40px;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-enviar:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+/* ========================= */
+/* CONTENIDO DEBAJO */
+/* ========================= */
+
+.exercise-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 140px;
+  padding-bottom: 3rem;
+  width: 100%;
+}

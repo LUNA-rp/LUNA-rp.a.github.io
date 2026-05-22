@@ -1,0 +1,245 @@
+/* Añadir al principio de tus CSS */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Asegurar que el foco sea muy visible (Accesibilidad) */
+:focus {
+  outline: 4px solid #1a74e4 !important;
+  outline-offset: 2px;
+  box-shadow: 0 0 10px rgba(26, 116, 228, 0.5);
+}
+:root {
+  --bg-light: #f7f7f5;
+  --nav-blue: #e3f2fd;
+  --text-dark: #2d3136;
+  --action-blue: #38a193;
+  --tab-border: #bbdefb;
+}
+
+/*modo oscuro*/
+/* --- AJUSTES PARA MODO OSCURO EN PESTAÑAS --- */
+
+.navbar {
+  background-color: var(--nav-bg); /* Usa la misma variable que el nav */
+  border-bottom: 2px solid var(--tab-border);
+}
+
+.tab-item {
+  padding: 15px 40px;
+  border: none;
+  background: var(
+    --tab-inactive,
+    #e0e0e0
+  ); /* Variable para el fondo inactivo */
+  color: var(--text-color); /* Para que el texto sea blanco en modo oscuro */
+}
+
+body.dark .tab-item {
+  background: #5a5656; /* Color oscuro para pestañas no seleccionadas */
+}
+
+.tab-item[aria-selected="true"] {
+  background-color: var(--action-blue);
+  color: white; /* Siempre blanco cuando está seleccionada */
+}
+
+.tab-content {
+  background: var(
+    --card-bg
+  ); /* Usamos el fondo de tarjeta (blanco o gris oscuro) */
+  color: var(--text-color);
+  padding: 2rem;
+  border-radius: 0 0 12px 12px;
+}
+
+/* Lista de contenidos (Botones de temas) */
+.contenido {
+  background: var(--tab-inactive, #161616);
+  color: var(--text-color);
+  border-left: 10px solid var(--action-blue);
+}
+
+body.dark .contenido {
+  background: #3d3c3c; /* Fondo oscuro para los items de la lista */
+  box-shadow: 0 4px 6px rgba(185, 50, 50, 0.05);
+}
+/* --- CORRECCIÓN PARA EL CONTENEDOR DE PESTAÑAS --- */
+
+/* El cuadro blanco principal (tab-content) */
+.tab-content {
+  background-color: white; /* Base claro */
+  color: #2d3136;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+/* Modo oscuro para el cuadro principal */
+body.dark .tab-content {
+  background-color: #1e1e1e; /* Mismo tono que las tarjetas */
+  color: #ffffff;
+}
+
+/* Los botones de la lista de contenidos (los que tienen iconos) */
+.contenido {
+  background-color: #dbe0dd; /* Fondo claro original */
+  color: #2d3136;
+}
+
+body.dark .contenido {
+  background-color: #3b3939; /* Fondo gris oscuro para el botón */
+  color: #ffffff; /* Texto blanco */
+  border-left: 10px solid #38a193; /* Mantenemos el borde verde de acento */
+}
+
+/* Iconos dentro de los botones de contenido */
+body.dark .contenido svg {
+  fill: #ffffff;
+}
+
+/* Títulos y párrafos dentro del panel */
+body.dark .tab-content h2,
+body.dark .intro-text {
+  color: #ffffff;
+}
+/*fin oscuro*/
+/* 1. Alejamos el contenido de la barra de navegación */
+.container {
+  padding-top: 60px; /* Aumentamos la distancia con la navbar */
+  max-width: 1200px;
+  margin: 0 auto; /* Centramos el contenido para mejor enfoque visual */
+}
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  margin: 0;
+}
+
+/* Barra superior */
+.navbar {
+  background-color: var(--nav-blue);
+  padding: 1rem 5%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 2px solid var(--tab-border);
+}
+
+.btn-back {
+  padding: 10px 20px;
+  background: white;
+  border: 2px solid var(--action-blue);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Sistema de Pestañas Horizontales */
+.tabs-container {
+  padding: 2rem 5%;
+}
+
+.tab-list {
+  display: flex;
+  gap: 30px;
+  border-bottom: 3px solid var(--tab-border);
+  padding-bottom: 5px;
+  overflow-x: auto; /* Para móviles */
+}
+
+.tab-item {
+  padding: 15px 40px;
+  border: none;
+  background: #e0e0e0;
+  border-radius: 12px 12px 0 0; /* Estilo redondeado como en tu imagen 1 */
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: 0.3s;
+  min-width: 120px; /* Target size para discapacidad motriz */
+}
+.tab-item:hover {
+  opacity: 0.8;
+  border-color: var(--action-blue);
+  background-color: #67b4cc;
+}
+.tab-item[aria-selected="true"] {
+  background-color: var(--action-blue);
+  color: white;
+  transform: translateY(-4px);
+}
+
+/* FOCO PARA DISCAPACIDAD MOTRIZ */
+.tab-item:focus {
+  outline: 4px solid #1a74e4; /* Contraste alto para saber dónde estás */
+  outline-offset: -4px;
+}
+
+.tab-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+/*contenido de grados*/
+/* LISTA DE CONTENIDOS */
+
+.content-list {
+  margin-top: 1.5rem;
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+/* ELEMENTOS */
+.contenido {
+  background: #dbe0dd;
+  border: none;
+  border-left: 10px solid #38a193;
+  border-radius: 12px;
+  padding: 2rem;
+  font-size: 1rem;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s ease;
+  /*iconos botones de grados*/
+  display: flex;
+  align-items: self-end;
+}
+.contenido a {
+  align-items: last baseline;
+}
+.contenido:hover {
+  background: #38a193;
+  transform: translateX(5px);
+}
+.contenido.active {
+  background: #38a193;
+  color: white;
+  border-left-color: #1a74e4;
+}
+.contenido:focus {
+  outline: 4px solid #1a74e4;
+  outline-offset: 3px;
+}
+/*.content-list li {
+  line-height: 1.8;
+  font-size: 1rem;
+  background: #dbe0dd;
+  padding: 1rem;
+  border-radius: 12px;
+  border-left: 6px solid #38a193;
+  list-style: none;
+}*/
+@media (max-width: 768px) {
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lesson-card {
+    min-height: auto;
+  }
+}
